@@ -12,13 +12,13 @@ class DataBase:
         if account not in self.accounts:
             self.accounts.append(account)
         else:
-            raise ValueError('This account is already registered in library')
+            raise ValueError('This account is already registered in library\n\n')
 
     def add_librarian(self, librarian: Librarian):
         if librarian not in self.librarians:
             self.librarians.append(librarian)
         else:
-            raise ValueError('This librarian is already registered in library')
+            raise ValueError('This librarian is already registered in library\n\n')
 
     def add_books(self, books: List['Book']):
         for book in books:
@@ -40,5 +40,11 @@ class DataBase:
     def update_catalog(self, book: 'Book'):
         for cur_book in self.catalog:
             if cur_book.id == book.id:
-                self.accounts.remove(cur_book)
-                self.accounts.append(book)
+                self.catalog.remove(cur_book)
+                self.catalog.append(book)
+
+    def remove_book(self, book: 'Book'):
+        for cur_book in self.catalog:
+            if cur_book.id == book.id:
+                del self.catalog[cur_book]
+                return

@@ -62,8 +62,13 @@ class LibrarySystem:
     def add_books_db(self, books: 'Book'):
         self.database.add_books(books)
 
-    def remove_books_db(self):
-        pass
+    def remove_book_db(self, title: string = None, author: string = None):
+        books = self.database.catalog
+        for book in books:
+            if (book.title == title) or (book.author == author):
+                self.database.remove_book(book)
+                print('The book "{}" was successfully removed\n\n'.format(book.title))
+                return
 
     def update_account_db(self, account: 'Account'):
         for acc in self.connected_accounts:
@@ -71,9 +76,6 @@ class LibrarySystem:
                 self.connected_accounts.remove(acc)
                 self.connected_accounts.append(account)
         self.database.update_account(account)
-
-    def update_librarians_db(self):
-        pass
 
     def update_catalog_db(self, book: 'Book'):
         self.database.update_account(book)

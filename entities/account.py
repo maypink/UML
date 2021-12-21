@@ -37,7 +37,7 @@ class Account:
             self.borrowed_books.append(book)
             self.library.update_account_db(self)
             self.library.update_catalog_db(book)
-            print('Book was successfully taken')
+            print('Book "{}" was successfully taken'.format(book.title))
 
     def return_book(self, title: string, author: string):
         book = self.search_book(title=title, author=author)[0]
@@ -47,7 +47,7 @@ class Account:
         books = self.library.get_books()
 
         if book not in books:
-            print('No such book in the library')
+            print('No such book in the library\n\n')
         else:
             if not book.is_taken:
                 return
@@ -56,7 +56,7 @@ class Account:
             self.returned_books.append(book)
             self.library.update_account_db(self)
             self.library.update_catalog_db(book)
-            print('Book was successfully returned')
+            print('Book "{}" was successfully returned\n\n'.format(book.title))
 
     def pay_fine(self):
         pass

@@ -36,8 +36,8 @@ class Librarian:
     def search_book(self):
         pass
 
-    def remove_book(self):
-        pass
+    def remove_book(self, title: string = None, author: string = None):
+        self.library.remove_book_db(title=title, author=author)
 
     def update_catalog(self): # занести данные о том, что книга занята в бд
         pass

@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # LIBRARIAN SIGN UP AND SIGN IN
     librarian.sign_up(library_system=library_system)
     librarian.sign_in(library_system=library_system)
-    print('connected librarians: ', library_system.connected_librarians[0].name)
+    print('connected librarians: {}\n\n'.format(library_system.connected_librarians[0].name))
 
     # ADD BOOKS
     book1 = Book(title='Martin Eden', author='Jack London',
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     book4 = Book(title='Naive. Super', author='Erlend Loe',
                  description='interesting description of Naive. Super')
     librarian.add_books([book1, book2, book3, book4])
-    print('----Books found in the {}: \n{}----'.format(librarian.library.name, librarian.library.get_books()))
+    print('----Books found in the {}: \n{}----\n\n'.format(librarian.library.name, librarian.library.get_books()))
 
     # MEMBER SIGN UP AND SIGN IN
     member1.sign_up(library=library_system)
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     # BOOK SEARCH
     found_book = member1.account.search_book(book1.title)
-    print('----Found book {} in {} copies----'.format(found_book[0].title, found_book[1]))
+    print('----Found book {} in {} copies----\n\n'.format(found_book[0].title, found_book[1]))
 
     # TAKE BOOK
     member1.account.take_book(title=book2.title, author=book2.author)
@@ -67,6 +67,8 @@ if __name__ == '__main__':
     print('Books that are now in use: ', member1.account.borrowed_books)
     print('Returned books: ', member1.account.returned_books)
 
-
+    # REMOVE BOOK
+    librarian.remove_book(title=book4.title, author=book4.author)
+    librarian.library.show_books()
 
 
