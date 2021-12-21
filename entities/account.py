@@ -1,4 +1,5 @@
 import string
+import random
 from typing import List
 
 
@@ -35,8 +36,11 @@ class Account:
                 return
             book.is_taken = True
             self.borrowed_books.append(book)
-            self.library.update_account_db(self)
-            self.library.update_catalog_db(book)
+
+            connected_librarians = self.library.connected_librarians
+            librarian = random.choice(connected_librarians)
+            librarian.give_book(account=self, book=book)
+
             print('Book "{}" was successfully taken'.format(book.title))
 
     def return_book(self, title: string, author: string):
@@ -54,10 +58,9 @@ class Account:
             self.borrowed_books.remove(book)
             book.is_taken = False
             self.returned_books.append(book)
-            self.library.update_account_db(self)
-            self.library.update_catalog_db(book)
+
+            connected_librarians = self.library.connected_librarians
+            librarian = random.choice(connected_librarians)
+            librarian.accept_book(account=self, book=book)
+
             print('Book "{}" was successfully returned\n\n'.format(book.title))
-
-    def pay_fine(self):
-        pass
-

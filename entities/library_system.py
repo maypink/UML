@@ -40,7 +40,7 @@ class LibrarySystem:
 
     def add_librarian_db(self, librarian: 'Librarian'):
         try:
-            self.database.add_account(librarian=librarian)
+            self.database.add_librarian(librarian=librarian)
         except ValueError as ve:
             print(ve.args)
 
