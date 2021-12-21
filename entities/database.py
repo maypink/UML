@@ -12,13 +12,13 @@ class DataBase:
         if account not in self.accounts:
             self.accounts.append(account)
         else:
-            raise ValueError('This account is already registered in library\n\n')
+            raise ValueError('---This account is already registered in library---\n\n')
 
     def add_librarian(self, librarian: Librarian):
         if librarian not in self.librarians:
             self.librarians.append(librarian)
         else:
-            raise ValueError('This librarian is already registered in library\n\n')
+            raise ValueError('---This librarian is already registered in library---\n\n')
 
     def add_books(self, books: List['Book']):
         for book in books:

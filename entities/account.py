@@ -23,14 +23,15 @@ class Account:
         return self.library.search_book(title, author)
 
     def take_book(self, title: string, author: string):
-        book = self.search_book(title=title, author=author)[0]
+        book = self.search_book(title=title, author=author)
 
         if book is None:
+            print('---Book "{}" is not found---'.format(title))
             return
         books = self.library.get_books()
-
+        book = book[0]
         if book not in books:
-            print('No such book in the library')
+            print('---No such book in the library---')
         else:
             if book.is_taken:
                 return
@@ -41,26 +42,28 @@ class Account:
             librarian = random.choice(connected_librarians)
             librarian.give_book(account=self, book=book)
 
-            print('Book "{}" was successfully taken'.format(book.title))
+            print('---Book "{}" was successfully taken---'.format(book.title))
 
     def return_book(self, title: string, author: string):
-        book = self.search_book(title=title, author=author)[0]
+        book = self.search_book(title=title, author=author)
 
         if book is None:
+            print('---There is no "{}" book in the library---'.format(title))
             return
         books = self.library.get_books()
-
+        book = book[0]
         if book not in books:
-            print('No such book in the library\n\n')
+            print('---No such book in the library---\n\n')
         else:
             if not book.is_taken:
-                return
-            self.borrowed_books.remove(book)
-            book.is_taken = False
-            self.returned_books.append(book)
+                print('---You ve mistaken, this book is not taken---')
+            else:
+                self.borrowed_books.remove(book)
+                book.is_taken = False
+                self.returned_books.append(book)
 
-            connected_librarians = self.library.connected_librarians
-            librarian = random.choice(connected_librarians)
-            librarian.accept_book(account=self, book=book)
+                connected_librarians = self.library.connected_librarians
+                librarian = random.choice(connected_librarians)
+                librarian.accept_book(account=self, book=book)
 
-            print('Book "{}" was successfully returned\n\n'.format(book.title))
+                print('---Book "{}" was successfully returned---\n\n'.format(book.title))

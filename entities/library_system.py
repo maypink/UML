@@ -67,7 +67,7 @@ class LibrarySystem:
         for book in books:
             if (book.title == title) or (book.author == author):
                 self.database.remove_book(book)
-                print('The book "{}" was successfully removed\n\n'.format(book.title))
+                print('---The book "{}" was successfully removed---\n\n'.format(book.title))
                 return
 
     def update_account_db(self, account: 'Account'):
