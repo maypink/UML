@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     while True:
         print('Press:\n'
-              '0 -- to search book\n'
+              '0 -- to search for book\n'
               '1 -- to take book\n'
               '2 -- to return book\n'
               '3 -- to show books that are in use now\n'
